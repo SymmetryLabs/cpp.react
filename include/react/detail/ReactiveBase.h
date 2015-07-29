@@ -61,7 +61,7 @@ public:
     // Move assignment
     ReactiveBase& operator=(ReactiveBase&& other)
     {
-        ptr_.reset(std::move(other));
+        ptr_ = std::move(other.ptr_);
         return *this;
     }
 
