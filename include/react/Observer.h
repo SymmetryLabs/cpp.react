@@ -130,6 +130,7 @@ public:
     ScopedObserver& operator=(ScopedObserver&& other)
     {
         obs_ = std::move(other.obs_);
+        return *this;
     }
 
     // Deleted default ctor, copy ctor and assignment
@@ -139,7 +140,8 @@ public:
 
     ~ScopedObserver()
     {
-        obs_.Detach();
+        if (obs_.IsValid())
+            obs_.Detach();
     }
 
     bool IsValid() const
